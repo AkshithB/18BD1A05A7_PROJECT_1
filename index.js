@@ -49,7 +49,7 @@ app.post('/ventilatorbyname', middleware.checkToken, function(req,res){
 app.post('/hospitalbyname', middleware.checkToken, (req,res)=>{
     var name=req.query.name;
     console.log("fetching data of "+name+" hospital");
-    var data=db.collection('hospital').find({"name":name}).toArray().then(result => res.json(result));
+    var data=db.collection('hospital').find({"name":new RegExp(name,'i')}).toArray().then(result => res.json(result));
 
 });
 
